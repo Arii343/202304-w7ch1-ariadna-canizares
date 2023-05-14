@@ -8,7 +8,6 @@ export const getRobots = async (
 ) => {
   try {
     const robots = await Robot.find().exec();
-
     res.status(200).json({ robots });
   } catch (error: unknown) {
     next(error);
