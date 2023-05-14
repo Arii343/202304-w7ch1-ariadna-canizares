@@ -5,10 +5,22 @@ import {
   notFoundError,
 } from "../middlewares/errorMiddlewares.js";
 import morgan from "morgan";
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://202304-w6chwe-constantin-dusescu-aria.netlify.app",
+];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
 
 const app = express();
 
 app.disable("x-powered-by");
+
+app.use(cors(options));
 
 app.use(express.json());
 

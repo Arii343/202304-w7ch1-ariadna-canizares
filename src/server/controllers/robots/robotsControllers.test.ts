@@ -1,15 +1,15 @@
 import { type Response, type Request } from "express";
-import { describe } from "node:test";
 import Robot from "../../../database/models/Robots";
 import { getRobot, getRobots } from "./robotsControllers";
 import { robotsMock, robotMock } from "../../../mocks/database/robots";
 
-type CustomResponse = Pick<Response, "status" | "json">;
+type CustomResponse = Pick<Response, "status" | "json" | "header">;
 type CustomRequest = Pick<Request, "params">;
 
 const response: CustomResponse = {
   status: jest.fn().mockReturnThis(),
   json: jest.fn(),
+  header: jest.fn(),
 };
 
 const next = jest.fn();
