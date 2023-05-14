@@ -2,6 +2,7 @@ import { type Response, type Request } from "express";
 import Robot from "../../../database/models/Robots";
 import { getRobot, getRobots } from "./robotsControllers";
 import { robotsMock, robotMock } from "../../../mocks/database/robots";
+import CustomError from "../../../CustomError/CustomError.js";
 
 type CustomResponse = Pick<Response, "status" | "json" | "header">;
 type CustomRequest = Pick<Request, "params">;
@@ -98,6 +99,24 @@ describe("Given a getRobot function controller", () => {
       Robot.findById = jest.fn().mockReturnValue({
         exec: jest.fn().mockRejectedValue(error),
       });
+
+      await getRobot(
+        request as Request<{ id: string }>,
+        response as Response,
+        next
+      );
+
+      expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+  describe("When it receives a next function and the exec method rejects with an 'Robot not found' error", () => {
+    test("Then it should call next function with error 'Robot not found'", async () => {
+      const response = {};
+      Robot.findById = jest.fn().mockReturnValue({
+        exec: jest.fn().mockResolvedValue(undefined),
+      });
+
+      const error = new CustomError(404, "Robot not found");
 
       await getRobot(
         request as Request<{ id: string }>,
