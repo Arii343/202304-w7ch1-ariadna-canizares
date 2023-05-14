@@ -1,10 +1,8 @@
 import "./loadEnvironments.js";
-import createDebug from "debug";
 import chalk from "chalk";
 import app from "./server/index.js";
 import mongoose from "mongoose";
-
-const debug = createDebug("robots-api:root");
+import { debug } from "./utils/debug.js";
 
 const port = process.env.PORT ?? 4000;
 const mongoDbConnection = process.env.MONGO_DB_CONNECTION;
