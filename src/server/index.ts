@@ -9,7 +9,7 @@ import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://robots-api-w6s9.onrender.com/",
+  "https://202304-w6chwe-constantin-dusescu-aria.netlify.app",
 ];
 
 const options: cors.CorsOptions = {
