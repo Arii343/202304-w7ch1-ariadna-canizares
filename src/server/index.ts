@@ -6,6 +6,7 @@ import {
 } from "../middlewares/errorMiddlewares.js";
 import morgan from "morgan";
 import cors from "cors";
+import userRouter from "./routes/robots/userRouter.js";
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -25,6 +26,8 @@ app.use(cors(options));
 app.use(express.json());
 
 app.use(morgan("dev"));
+
+app.use("/user", userRouter);
 
 app.use("/robots", robotsRouter);
 
