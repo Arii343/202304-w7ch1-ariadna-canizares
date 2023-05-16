@@ -11,6 +11,7 @@ import userRouter from "./routes/robots/userRouter.js";
 const allowedOrigins = [
   "http://localhost:5173",
   "https://202304-w6chwe-constantin-dusescu-aria.netlify.app",
+  "https://202304-w7ch1-ariadna-canizares-front.netlify.app",
 ];
 
 const options: cors.CorsOptions = {
